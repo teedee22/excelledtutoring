@@ -1,8 +1,17 @@
 .form-container {
   position: relative;
   right: 0;
-  margin: 1px;
+  margin: 20px;
   max-width: 100%;
   padding: 16px;
-  background-color:rgba(0, 0, 0, 0.5);
+  background-color:rgba(0, 0, 0, 0.7);
+}
+
+.title-container {
+  position: relative;
+  right: 0;
+  margin: 20px;
+  max-width: 100%;
+  padding: 16px;
+  background-color:rgba(0, 0, 0, 0.3);
 }

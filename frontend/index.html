@@ -3,20 +3,23 @@
     <head>
         <meta charset="utf-8" />
         <title>
-            Hello world
+            Excelled tutoring
         </title>
         <meta name="description" content="{{ self.search_description }}">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <link rel="stylesheet" type="text/css" href="ryan.css">
-        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="bootstrap.css">
 
     </head>
 
     <body>
-
+        <div class="container">
+        <h1 class="text-center display-3">Excelled Tutoring</h1>
+        <h3 class="text-center font-italic">Tutoring Sacramento Math</h3>
+    </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand mb-0 h1" href="/">Excelled Tutoring</a>
+        <a class="navbar-brand mb-0 h1" href="/"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -24,11 +27,11 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mx-auto">
 
-                    <li class="nav-item  active">
-                        <a class="nav-link h5" href="/">Home</a>
+                    <li class="nav-item active">
+                        <a class="nav-link h5" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link h5" href="/">Blog</a>
+                        <a class="nav-link h5" href="blog.html">Blog</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link h5" href="/">About</a>
@@ -39,34 +42,27 @@
         </div>
     </nav>
     <div class="jumbotron" style="background-image: url('child-img.jpg'); background-size: cover; background-position: center center; color: white;">
-        <div class="row">
-            <div class="col">
-        <div class="form-container">
-        <h1 class="text-center display-2 text-light">Excelled Tutoring</h1>
-        <h3 class="text-center font-italic text-light">Tutoring Sacramento in Math</h3>
-    </div>
-    </div>
-    </div>
-        <div class="row">
+
+        <div class="row justify-content-center">
 
         <div class="col-lg-6">
         <div class="form-container">
             <h1 style="color: white;">Contact</h1>
         <form>
+            <div class="form-group">
+              <label for="Name">Name</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required autofocus="true">
+            </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
             <small id="emailHelp" class="form-text text-light">We'll never share your email with anyone else.</small>
           </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-          </div>
             <div class="form-group">
-            <label for="exampleFormControlTextarea1">Example textarea</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <label for="exampleFormControlTextarea1">What do you need?</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
             </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-secondary">Submit</button>
         </form>
     </div>
 </div>
@@ -101,7 +97,7 @@
     <div class="col-12 text-center">
         <h1 class="display-4">Why choose Excelled Tutoring?</h1>
     </div>
-    <div class="col-4">
+    <div class="col-md-4">
     <div class="card mb-3">
       <h3 class="card-header text-center">1 on 1 tutoring</h3>
 
@@ -111,7 +107,7 @@
       </div>
   </div>
 </div>
-<div class="col-4">
+<div class="col-md-4">
 <div class="card mb-3">
   <h3 class="card-header text-center">In Your Home</h3>
 
@@ -121,7 +117,7 @@
   </div>
 </div>
 </div>
-<div class="col-4">
+<div class="col-md-4">
 <div class="card mb-3">
   <h3 class="card-header text-center">Proven results</h3>
 
@@ -133,8 +129,31 @@
 </div>
     </div>
 </div>
-<p>hello world</p>
 
+<div class="container">
+    <div class="row">
+        <div class="col-10 mx-auto">
+    <h1 class="my-1">Featured
+        <small>from my blog</small>
+    </h1>
+<div class="card mb-3" style="">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <a href="/"><img src="featured.jpg" class="card-img" alt="..."></a>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <a href="/"><h4 class="card-title h2">A new math Methodology</h4></a>
+        <p class="card-text">Are we failing our kids at math? Four in five kids are not being taught according to new methodologies.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+  <button class="btn-secondary text-uppercase">See more blog posts</button>
+</div>
+</div>
+</div>
+</div>
 
         <div class="container-fluid">
             <hr>
