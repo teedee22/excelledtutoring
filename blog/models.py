@@ -107,9 +107,6 @@ class BlogListingPage(Page):
         return context
 
 
-# Blog Detail page
-
-
 class BlogPost(Page):
     """Page for Blog Posts"""
 

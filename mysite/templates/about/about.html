@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+{% block content %}
+
+{% image self.banner_image fill-1800x1300 as img %}
+<div class="container-fluid">
+    <div class="jumbotron" style="background-image: url('{{ img.url }}'); background-size: cover; background-position: center center; color: white;">
+        <div class="row">
+            <div class="title-container">
+                <h1 class="text-light">{{ self.banner_title }}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-10">
+            {% for block in page.content %}
+                {% include_block block %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-10 mx-auto">
+            <h1 class="my-1"><small>Meet Our</small>
+                Team
+            </h1>
+            <hr>
+        </div>
+    </div>
+    <div class="row my-3">
+        {% for cycle in self.team.all %}
+        <div class="col-sm-4">
+            <div class="card border-primary mb-3" style="">
+            {% image cycle.image fill-640x480 as img2 %}
+            <img class="card-img-top" src="{{ img2.url }}" alt="{{ img2.alt }}">
+
+            <div class="card-header">
+                <h5 class="card-title h4">{{ cycle.name }}</h5>
+                <h6 class="card-text">{{ cycle.position }}</h6>
+            </div>
+            <div class="card-body text-primary">
+                <p class="card-text">{{ cycle.description|richtext }}</p>
+            </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}
