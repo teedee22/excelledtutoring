@@ -13,6 +13,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 
 
 class HomePageTestimonial(Orderable):
+    """Orderable for testimonials appearing on the homepage"""
     page = ParentalKey("home.HomePage", related_name="testimonials")
     testimonial_text = models.CharField(max_length=700, blank=True, null=True)
     testimonial_author = models.CharField(
@@ -29,6 +30,26 @@ class HomePageTestimonial(Orderable):
     ]
 
 
+class HomePageMethodology(Orderable):
+    """Orderable for the three part methodology on the homepage"""
+    page = ParentalKey("home.HomePage", related_name="methodology")
+    method_title = models.CharField(max_length=100, blank=True, null=True)
+    method_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    method_text = models.CharField(max_length=700, blank=True, null=True)
+
+    panels = [
+        FieldPanel("method_title"),
+        ImageChooserPanel("method_image"),
+        FieldPanel("method_text"),
+    ]
+
+
 class HomePage(Page):
     """Home page model/ landing page"""
 
@@ -41,13 +62,27 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name="+",
     )
+    page_subtitle = models.CharField(max_length=150, null=True, blank=True)
 
     content_panels = Page.content_panels + [
         MultiFieldPanel(
             [ImageChooserPanel("banner_image")], heading="Banner Options"
         ),
         MultiFieldPanel(
-            [InlinePanel("testimonials", max_num=3, min_num=1, label="Testimonials")],
+            [
+                InlinePanel(
+                    "testimonials", max_num=3, min_num=3, label="Testimonials"
+                )
+            ],
             heading="Testimonials",
+            ),
+        MultiFieldPanel(
+            [
+                FieldPanel("page_subtitle"),
+                InlinePanel(
+                    "methodology", max_num=3, min_num=3, label="Our methods"
+                )
+            ],
+            heading="Methodology",
         ),
     ]

@@ -35,6 +35,7 @@
 <!-- testiomonials -->
 <div class="container-fluid">
     <div class="row">
+        <!-- todo, if there are less than three, make them appear evenly.  -->
         {% for cycle in self.testimonials.all %}
         <div class="col-sm-4">
             <blockquote class="blockquote">
@@ -43,51 +44,33 @@
                 </blockquote>
         </div>
         {% endfor %}
-
     </div>
 </div>
 <hr>
 
-
-
 <!-- Methodology -->
 <div class="container">
-<div class="row">
-    <div class="col-12 text-center">
-        <h1 class="display-4">Why choose Excelled Tutoring?</h1>
-    </div>
-    <div class="col-md-4">
-    <div class="card mb-3">
-      <h3 class="card-header text-center">1 on 1 tutoring</h3>
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="display-4">{{ self.page_subtitle }}</h1>
+        </div>
 
-      <img style="height: 200px; width: 100%; display: block;" src="one.jpg" alt="Card image">
-      <div class="card-body">
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>
-  </div>
-</div>
-<div class="col-md-4">
-<div class="card mb-3">
-  <h3 class="card-header text-center">In Your Home</h3>
-
-  <img style="height: 200px; width: 100%; display: block;" src="home.jpg" alt="Card image">
-  <div class="card-body">
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-</div>
-</div>
-<div class="col-md-4">
-<div class="card mb-3">
-  <h3 class="card-header text-center">Proven results</h3>
-
-  <img style="height: 200px; width: 100%; display: block;" src="academic.jpg" alt="Card image">
-  <div class="card-body">
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-</div>
-</div>
+        {% for cycle in self.methodology.all %}
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <h3 class="card-header text-center">{{ cycle.method_title }}</h3>
+                {% image cycle.method_image fill-640x480 as img %}
+                <img style="height: 200px; width: 100%; display: block;" src="{{ img.url }}" alt="{{ img.alt }}">
+                <div class="card-body">
+                    <p class="card-text">{{ cycle.method_text }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
 </div>
+
+
 
 <!-- Featured blog post -->
 <div class="container">
