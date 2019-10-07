@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+{% block content %}
+
+{% image self.banner_image fill-1800x1300 as img %}
+<div class="container-fluid">
+    <div class="jumbotron" style="background-image: url('{{ img.url }}'); background-size: cover; background-position: center center; color: white;">
+        <div class="row">
+            <div class="title-container">
+                <h1 class="text-light">{{ self.banner_title }}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if self.intro_text %}
+    <div class="container">
+        <div class="row">
+            <div class="col-10 mx-auto">
+                {{ self.intro_text|richtext }}
+                {{ self.blog_post_content|richtext }}
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-10 mx-auto">
+            <h1 class="my-1">Latest
+                <small>from my blog</small>
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for post in posts %}
+            <div class="col-10 mx-auto">
+                <div class="card mb-3" style="">
+                    <div class="row no-gutters">
+                    <div class="col-md-4">
+                        {% image post.blog_post_image fill-640x480 as img %}
+                        <a href="{{ post.url }}"><img src="{{ img.url }}" class="card-img" alt="{{ img.alt }}"></a>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                        <a href="{{ post.url }}"><h4 class="card-title h2">{{ post.blog_post_title }}</h4></a>
+                        <p class="card-text"> {{ post.blog_post_description|richtext }} </p>
+                        <p class="card-text"><small class="text-muted">{{ post.first_published_at }}</small></p>
+                        </div>
+                    </div>
+                    </div>
+                <a href="{{ post.url }}"<button class="btn-secondary text-uppercase text-center">See more</button></a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}
