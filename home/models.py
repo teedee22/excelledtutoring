@@ -2,6 +2,7 @@ from django.db import models
 
 from wagtail.admin.edit_handlers import (
     FieldPanel,
+    FieldRowPanel,
     MultiFieldPanel,
     InlinePanel,
     PageChooserPanel,
@@ -9,8 +10,19 @@ from wagtail.admin.edit_handlers import (
 
 from modelcluster.fields import ParentalKey
 
-from wagtail.core.models import Page, Orderable
+from wagtail.contrib.forms.models import (
+    AbstractEmailForm,
+    AbstractFormField
+)
+from wagtail.core.fields import RichTextField
+from wagtail.core.models import Orderable
 from wagtail.images.edit_handlers import ImageChooserPanel
+
+
+class FormField(AbstractFormField):
+    page = ParentalKey(
+        "HomePage", on_delete=models.CASCADE, related_name="form_fields"
+    )
 
 
 class HomePageTestimonial(Orderable):
@@ -67,9 +79,8 @@ class HomePageFeaturedBlogPost(Orderable):
     ]
 
 
-class HomePage(Page):
+class HomePage(AbstractEmailForm):
     """Home page model/ landing page"""
-
     template = "home/home_page.html"
     max_count = 1
     banner_image = models.ForeignKey(
@@ -80,11 +91,20 @@ class HomePage(Page):
         related_name="+",
     )
     page_subtitle = models.CharField(max_length=150, null=True, blank=True)
-
-    content_panels = Page.content_panels + [
+    thank_you_text = RichTextField(blank=True)
+    content_panels = AbstractEmailForm.content_panels + [
         MultiFieldPanel(
             [ImageChooserPanel("banner_image")], heading="Banner Options"
         ),
+        InlinePanel('form_fields', label="Form Fields"),
+        FieldPanel('thank_you_text'),
+        MultiFieldPanel([
+            FieldRowPanel([
+                FieldPanel('from_address', classname="col6"),
+                FieldPanel('to_address', classname="col6")
+            ]),
+            FieldPanel('subject'),
+        ], heading="Email Settings"),
         MultiFieldPanel(
             [
                 InlinePanel(

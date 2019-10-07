@@ -3,15 +3,15 @@
 {% block content %}
 
 {% image self.blog_post_image fill-1800x1300 as img %}
-<div class="container-fluid">
-    <div class="jumbotron" style="background-image: url('{{ img.url }}'); background-size: cover; background-position: center center; color: white;">
-        <div class="row">
-            <div class="title-container">
-                <h1 class="text-light">{{ self.blog_post_title }}</h1>
-            </div>
+
+<div class="jumbotron" style="background-image: url('{{ img.url }}'); background-size: cover; background-position: center center; color: white;">
+    <div class="row">
+        <div class="title-container">
+            <h1 class="text-light">{{ self.blog_post_title }}</h1>
         </div>
     </div>
 </div>
+
 
 <div class="container">
     <div class="row justify-content-center">
