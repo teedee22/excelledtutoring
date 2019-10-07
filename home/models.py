@@ -4,6 +4,7 @@ from wagtail.admin.edit_handlers import (
     FieldPanel,
     MultiFieldPanel,
     InlinePanel,
+    PageChooserPanel,
 )
 
 from modelcluster.fields import ParentalKey
@@ -50,6 +51,22 @@ class HomePageMethodology(Orderable):
     ]
 
 
+class HomePageFeaturedBlogPost(Orderable):
+    """Orderable featured blog post or posts"""
+    page = ParentalKey("home.HomePage", related_name="featured")
+    featured_blog_post = models.ForeignKey(
+        "wagtailcore.page",
+        null=True,
+        blank=True,
+        related_name="+",
+        on_delete=models.SET_NULL,
+    )
+
+    panels = [
+        PageChooserPanel("featured_blog_post")
+    ]
+
+
 class HomePage(Page):
     """Home page model/ landing page"""
 
@@ -85,4 +102,11 @@ class HomePage(Page):
             ],
             heading="Methodology",
         ),
+        MultiFieldPanel(
+            [
+                InlinePanel(
+                    "featured", max_num=6, min_num=0, label="featured blog post(s)"
+                )
+            ]
+        )
     ]

@@ -59,7 +59,7 @@
         <div class="col-md-4">
             <div class="card mb-3">
                 <h3 class="card-header text-center">{{ cycle.method_title }}</h3>
-                {% image cycle.method_image fill-640x480 as img %}
+                {% image cycle.method_image width-640 as img %}
                 <img style="height: 200px; width: 100%; display: block;" src="{{ img.url }}" alt="{{ img.alt }}">
                 <div class="card-body">
                     <p class="card-text">{{ cycle.method_text }}</p>
@@ -76,25 +76,28 @@
 <div class="container">
     <div class="row">
         <div class="col-10 mx-auto">
-    <h1 class="my-1">Featured
-        <small>from my blog</small>
-    </h1>
-<div class="card mb-3" style="">
-  <div class="row no-gutters">
-    <div class="col-md-4">
-      <a href="/"><img src="featured.jpg" class="card-img" alt="..."></a>
+            <h1 class="my-1">Featured
+                <small>from my blog</small>
+            </h1>
+            {% for cycle in self.featured.all %}
+            <div class="card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        {% image cycle.featured_blog_post.specific.blog_post_image fill-640x480 as img2 %}
+                        <a href="{{ cycle.featured_blog_post.specific.url }}"><img src="{{ img2.url }}" class="card-img" alt="{{ img2.alt }}"></a>
+                    </div>
+                    <div class="col-md-8">
+                    <div class="card-body">
+                    <a href="{{ cycle.featured_blog_post.specific.url }}"><h4 class="card-title h2">{{ cycle.featured_blog_post.specific.blog_post_title }}</h4></a>
+                    <p class="card-text">{{ cycle.featured_blog_post.specific.blog_post_description|richtext }}</p>
+                    <p class="card-text"><small class="text-muted">{{ cycle.featured_blog_post.specific.first_published_at }}</small></p>
+                    </div>
+                    </div>
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
     </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <a href="/"><h4 class="card-title h2">A new math Methodology</h4></a>
-        <p class="card-text">Are we failing our kids at math? Four in five kids are not being taught according to new methodologies.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-      </div>
-    </div>
-  </div>
-  <button class="btn-secondary text-uppercase">See more blog posts</button>
-</div>
-</div>
-</div>
 </div>
 {% endblock %}
