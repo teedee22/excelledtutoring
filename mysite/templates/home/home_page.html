@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+{% block content %}
+
+<!-- title bar and contact form -->
+    {% image self.banner_image fill-1800x1300 as img %}
+    <div class="jumbotron" style="background-image: url('{{ img.url }}'); background-size: cover; background-position: center center; color: white;">
+
+        <div class="row justify-content-center">
+
+        <div class="col-lg-6">
+        <div class="form-container">
+            <h1 style="color: white;">Contact</h1>
+        <form>
+            <div class="form-group">
+              <label for="Name">Name</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required autofocus="true">
+            </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+            <small id="emailHelp" class="form-text text-light">We'll never share your email with anyone else.</small>
+          </div>
+            <div class="form-group">
+            <label for="exampleFormControlTextarea1">What do you need?</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+            </div>
+          <button type="submit" class="btn btn-secondary">Submit</button>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+
+<!-- testiomonials -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4">
+            <blockquote class="blockquote">
+  <p class="mb-0 font-weight-bold">"Ryan enabled Jimmy to go from a C to an A in Mathematics, by helping him understand the foundational topics"</p>
+  <footer class="blockquote-footer">Mr and Mrs Smith <cite title="Source Title">Sacramento, CA</cite></footer>
+</blockquote>
+        </div>
+        <div class="col-sm-4">
+            <blockquote class="blockquote text-center">
+  <p class="mb-0 font-weight-bold">"Ryan enabled Jimmy to go from a C to an A in Mathematics, by helping him understand the foundational topics"</p>
+  <footer class="blockquote-footer">Mr and Mrs Smith <cite title="Source Title">Sacramento, CA</cite></footer>
+</blockquote>
+        </div>
+        <div class="col-sm-4">
+            <blockquote class="blockquote text-right">
+  <p class="mb-0 font-weight-bold">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.""</p>
+  <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Place name</cite></footer>
+</blockquote>
+        </div>
+    </div>
+<hr>
+</div>
+
+
+<!-- Methodology -->
+<div class="container">
+<div class="row">
+    <div class="col-12 text-center">
+        <h1 class="display-4">Why choose Excelled Tutoring?</h1>
+    </div>
+    <div class="col-md-4">
+    <div class="card mb-3">
+      <h3 class="card-header text-center">1 on 1 tutoring</h3>
+
+      <img style="height: 200px; width: 100%; display: block;" src="one.jpg" alt="Card image">
+      <div class="card-body">
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+  </div>
+</div>
+<div class="col-md-4">
+<div class="card mb-3">
+  <h3 class="card-header text-center">In Your Home</h3>
+
+  <img style="height: 200px; width: 100%; display: block;" src="home.jpg" alt="Card image">
+  <div class="card-body">
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="card mb-3">
+  <h3 class="card-header text-center">Proven results</h3>
+
+  <img style="height: 200px; width: 100%; display: block;" src="academic.jpg" alt="Card image">
+  <div class="card-body">
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+</div>
+    </div>
+</div>
+
+<!-- Featured blog post -->
+<div class="container">
+    <div class="row">
+        <div class="col-10 mx-auto">
+    <h1 class="my-1">Featured
+        <small>from my blog</small>
+    </h1>
+<div class="card mb-3" style="">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <a href="/"><img src="featured.jpg" class="card-img" alt="..."></a>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <a href="/"><h4 class="card-title h2">A new math Methodology</h4></a>
+        <p class="card-text">Are we failing our kids at math? Four in five kids are not being taught according to new methodologies.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+  <button class="btn-secondary text-uppercase">See more blog posts</button>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}
