@@ -1,6 +1,7 @@
 from django.db import models
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from wagtail.admin.edit_handlers import (
     FieldPanel,
 )
@@ -26,10 +27,14 @@ class BlogListingPage(Page):
     )
     banner_title = models.CharField(max_length=120, blank=True, null=True)
     intro_text = RichTextField(blank=True, null=True)
+    blog_listing_large_text = models.CharField(max_length=50, blank=True, null=True)
+    blog_listing_small_text = models.CharField(max_length=50, blank=True, null=True)
     content_panels = Page.content_panels + [
         FieldPanel("banner_title"),
         ImageChooserPanel("banner_image"),
-        FieldPanel("intro_text")
+        FieldPanel("intro_text"),
+        FieldPanel("blog_listing_large_text"),
+        FieldPanel("blog_listing_small_text"),
     ]
 
     def get_context(self, request):
@@ -40,7 +45,17 @@ class BlogListingPage(Page):
             .public()
             .order_by("-first_published_at")
         )
-        context['posts'] = all_posts
+        # Adding paginator to blog listing page:
+        paginator = Paginator(all_posts, 2)
+        page = request.GET.get("page")
+        try:
+            posts = paginator.page(page)
+        except PageNotAnInteger:
+            posts = paginator.page(1)
+        except EmptyPage:
+            posts = paginator.page(paginator.num_pages)
+
+        context["posts"] = posts
         return context
 # Blog Detail page
 

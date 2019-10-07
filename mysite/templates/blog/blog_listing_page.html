@@ -2,17 +2,17 @@
 {% load static wagtailcore_tags wagtailimages_tags %}
 {% block content %}
 
+<!-- Banner at the top and title -->
 {% image self.banner_image fill-1800x1300 as img %}
-<div class="container-fluid">
-    <div class="jumbotron" style="background-image: url('{{ img.url }}'); background-size: cover; background-position: center center; color: white;">
-        <div class="row">
-            <div class="title-container">
-                <h1 class="text-light">{{ self.banner_title }}</h1>
-            </div>
+<div class="jumbotron" style="background-image: url('{{ img.url }}'); background-size: cover; background-position: center center; color: white;">
+    <div class="row">
+        <div class="title-container">
+            <h1 class="text-light">{{ self.banner_title }}</h1>
         </div>
     </div>
 </div>
 
+<!-- intro text -->
 {% if self.intro_text %}
     <div class="container">
         <div class="row">
@@ -24,14 +24,17 @@
     </div>
 {% endif %}
 
+<br>
 <div class="container">
+    {% if self.blog_listing_large_text %}
     <div class="row">
         <div class="col-10 mx-auto">
-            <h1 class="my-1">Latest
-                <small>from my blog</small>
+            <h1 class="my-1">{{ self.blog_listing_large_text }}
+                <small>{{ self.blog_listing_small_text }}</small>
             </h1>
         </div>
     </div>
+    {% endif %}
 
     <div class="row">
         {% for post in posts %}
@@ -57,5 +60,24 @@
     </div>
 </div>
 
+{% if posts.paginator.num_pages > 1 %}
+<div class="row justify-content-center">
+    <ul class="pagination">
 
+    <li class="page-item {% if not posts.has_previous %} disabled {% endif %}">
+        <a class="page-link" href="?page={% if posts.has_previous %}{{ posts.previous_page_number }}{% endif %}">&laquo;</a>
+    </li>
+    {% for page_num in posts.paginator.page_range %}
+    <li class="page-item {% if page_num == posts.number %} active {% endif %}">
+        <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+    </li>
+    {% endfor %}
+
+    <li class="page-item {% if not posts.next_page_number %} disabled {% endif %}">
+    <a class="page-link" href="?page={% if posts.has_next %}{{ posts.next_page_number }}{% endif %}">&raquo;</a>
+    </li>
+
+    </ul>
+</div>
+{% endif %}
 {% endblock %}
