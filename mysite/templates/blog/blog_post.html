@@ -14,11 +14,42 @@
 </div>
 
 <div class="container">
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-10">
             <b>{{ self.blog_post_description|richtext }} </b>
             {{ self.blog_post_content|richtext }}
         </div>
     </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-10 mx-auto">
+            <h1 class="my-1">Authored
+                <small>by</small>
+            </h1>
+        </div>
+    </div>
+        {% for author in self.blog_authors.all %}
+        <div class="card mb-3" style="">
+            <div class="row no-gutters">
+            <div class="col-md-4">
+                {% image author.author.image fill-640x480 as img %}
+                <img src="{{ img.url }}" class="card-img rounded" alt="{{ img.alt }}">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                <h4 class="card-title h2">{{ author.author.name }}</h4>
+                <h3 class="card-title h3 font-italic">{{ author.author.job_title }}</h3>
+
+                <p class="card-text"> {{ author.author.description|richtext }} </p>
+                <a href="{{ author.author.website }}" target="_blank"><p class="card-text">{{ author.author.website }}</p></a>
+                </div>
+            </div>
+            </div>
+        </div>
+        {% endfor %}
+
+
 </div>
 {% endblock %}
