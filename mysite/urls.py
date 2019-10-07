@@ -26,10 +26,14 @@ urlpatterns = [
     #    url(r'^pages/', include(wagtail_urls)),
 ]
 
-
+from django.urls import path
 if settings.DEBUG:
     from django.conf.urls.static import static
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns
 
     # Serve static and media files from development server
     urlpatterns += staticfiles_urlpatterns()

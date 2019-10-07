@@ -28,10 +28,10 @@
 
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
-
+        {% load wagtailcore_tags %}
         <div class="container">
-            <h1 class="text-center display-3">Excelled Tutoring</h1>
-            <h3 class="text-center font-italic">Tutoring Sacramento Math</h3>
+            <h1 class="text-center display-3">{{ settings.site_settings.TitleSettings.site_title }}</h1>
+            <h3 class="text-center font-italic">{{ settings.site_settings.TitleSettings.site_subtitle }}</h3>
         </div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand mb-0 h1" href="/"></a>
@@ -60,7 +60,7 @@
         {% block content %}{% endblock %}
         <div class="container-fluid">
             <hr>
-            <div class="text-center"> &copy; Excelled Tutors</div>
+            <div class="text-center"> &copy; {{ settings.site_settings.FooterSettings.footertext }}</div>
             <br>
         </div>
         {# Global javascript #}
