@@ -35,27 +35,19 @@
 <!-- testiomonials -->
 <div class="container-fluid">
     <div class="row">
+        {% for cycle in self.testimonials.all %}
         <div class="col-sm-4">
             <blockquote class="blockquote">
-  <p class="mb-0 font-weight-bold">"Ryan enabled Jimmy to go from a C to an A in Mathematics, by helping him understand the foundational topics"</p>
-  <footer class="blockquote-footer">Mr and Mrs Smith <cite title="Source Title">Sacramento, CA</cite></footer>
-</blockquote>
+                <p class="mb-0 font-weight-bold">{{ cycle.testimonial_text }}</p>
+                <footer class="blockquote-footer">{{ cycle.testimonial_author }}<cite title="Source Title">{{ cycle.testimonial_location }}</cite></footer>
+                </blockquote>
         </div>
-        <div class="col-sm-4">
-            <blockquote class="blockquote text-center">
-  <p class="mb-0 font-weight-bold">"Ryan enabled Jimmy to go from a C to an A in Mathematics, by helping him understand the foundational topics"</p>
-  <footer class="blockquote-footer">Mr and Mrs Smith <cite title="Source Title">Sacramento, CA</cite></footer>
-</blockquote>
-        </div>
-        <div class="col-sm-4">
-            <blockquote class="blockquote text-right">
-  <p class="mb-0 font-weight-bold">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.""</p>
-  <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Place name</cite></footer>
-</blockquote>
-        </div>
+        {% endfor %}
+
     </div>
-<hr>
 </div>
+<hr>
+
 
 
 <!-- Methodology -->
