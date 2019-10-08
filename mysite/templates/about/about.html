@@ -24,18 +24,20 @@
 </div>
 
 <div class="container">
+    {% if self.team_intro_large_text or self.team_intro_large_text %}
     <div class="row">
         <div class="col-10 mx-auto">
-            <h1 class="my-1"><small>Meet Our</small>
-                Team
+            <h1 class="my-1"><small>{{ self.team_intro_small_text }}</small>
+                {{ self.team_intro_large_text }}
             </h1>
             <hr>
         </div>
     </div>
-    <div class="row my-3">
+    {% endif %}
+    <div class="row my-3 justify-content-center">
         {% for cycle in self.team.all %}
         <div class="col-sm-4">
-            <div class="card mb-3" style="">
+            <div class="card mb-3">
             {% image cycle.image fill-640x480 as img2 %}
             <img class="card-img-top rounded" src="{{ img2.url }}" alt="{{ img2.alt }}">
 

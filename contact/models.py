@@ -47,9 +47,17 @@ class ContactPage(WagtailCaptchaEmailForm):
         null=True,
         blank=True,
     )
+    contact_small_text = models.CharField(
+        max_length=50, blank=True, null=True
+    )
+    contact_large_text = models.CharField(
+        max_length=50, blank=True, null=True
+    )
     content_panels = AbstractEmailForm.content_panels + [
         FieldPanel('intro'),
         ImageChooserPanel("banner_image"),
+        FieldPanel("contact_small_text"),
+        FieldPanel("contact_large_text"),
         InlinePanel('form_fields', label="Form Fields"),
         FieldPanel('thank_you_text'),
         MultiFieldPanel([

@@ -16,20 +16,24 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-10">
-            <b>{{ self.blog_post_description|richtext }} </b>
+            {% if self.description_should_appear_at_top_of_blog_post %}
+            <h4>{{ self.blog_post_description|richtext }}</h4>
+            {% endif %}
             {{ self.blog_post_content|richtext }}
         </div>
     </div>
 </div>
 
 <div class="container">
+    {% if self.authored_by_large_text or self.authored_by_small_text %}
     <div class="row">
         <div class="col-10 mx-auto">
-            <h1 class="my-1">Authored
-                <small>by</small>
+            <h1 class="my-1">{{ self.authored_by_large_text }}
+                <small>{{ self.authored_by_small_text }}</small>
             </h1>
         </div>
     </div>
+    {% endif %}
         {% for author in self.blog_authors.all %}
         <div class="card mb-3">
             <div class="row no-gutters">

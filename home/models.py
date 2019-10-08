@@ -17,6 +17,7 @@ from wagtail.core.models import Orderable
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtailcaptcha.models import WagtailCaptchaEmailForm
 
+
 class FormField(AbstractFormField):
     page = ParentalKey(
         "HomePage", on_delete=models.CASCADE, related_name="form_fields"
@@ -90,6 +91,12 @@ class HomePage(WagtailCaptchaEmailForm):
     )
     page_subtitle = models.CharField(max_length=150, null=True, blank=True)
     thank_you_text = RichTextField(blank=True)
+    blog_featured_large_text = models.CharField(
+        max_length=50, blank=True, null=True
+    )
+    blog_featured_small_text = models.CharField(
+        max_length=50, blank=True, null=True
+        )
     content_panels = AbstractEmailForm.content_panels + [
         MultiFieldPanel(
             [ImageChooserPanel("banner_image")], heading="Banner Options"
@@ -122,6 +129,8 @@ class HomePage(WagtailCaptchaEmailForm):
         ),
         MultiFieldPanel(
             [
+                FieldPanel("blog_featured_large_text"),
+                FieldPanel("blog_featured_small_text"),
                 InlinePanel(
                     "featured", max_num=6, min_num=0, label="featured blog post(s)"
                 )

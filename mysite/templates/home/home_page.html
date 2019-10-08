@@ -47,13 +47,15 @@
 </div>
 <hr>
 
-<!-- Methodology -->
+
 <div class="container">
     <div class="row">
+        {% if self.page_subtitle %}
         <div class="col-12 text-center">
             <h1 class="display-4">{{ self.page_subtitle }}</h1>
         </div>
-
+        {% endif %}
+        <!-- Methodology -->
         {% for cycle in self.methodology.all %}
         <div class="col-md-4">
             <div class="card mb-3">
@@ -75,9 +77,11 @@
 <div class="container">
     <div class="row">
         <div class="col-10 mx-auto">
-            <h1 class="my-1">Featured
-                <small>from my blog</small>
+            {% if self.blog_featured_large_text or self.blog_featured_small_text %}
+            <h1 class="my-1">{{ self.blog_featured_large_text }}
+                <small>{{ self.blog_featured_small_text }}</small>
             </h1>
+            {% endif %}
             {% for cycle in self.featured.all %}
             <div class="card mb-3">
                 <div class="row no-gutters">

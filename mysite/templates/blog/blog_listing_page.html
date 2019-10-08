@@ -26,7 +26,7 @@
 
 <br>
 <div class="container">
-    {% if self.blog_listing_large_text %}
+    {% if self.blog_listing_large_text or self.blog_listing_small_text %}
     <div class="row">
         <div class="col-10 mx-auto">
             <h1 class="my-1">{{ self.blog_listing_large_text }}

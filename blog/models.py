@@ -94,7 +94,7 @@ class BlogListingPage(Page):
             BlogPost.objects.live().public().order_by("-first_published_at")
         )
         # Adding paginator to blog listing page:
-        paginator = Paginator(all_posts, 2)
+        paginator = Paginator(all_posts, 5)
         page = request.GET.get("page")
         try:
             posts = paginator.page(page)
@@ -118,6 +118,7 @@ class BlogPost(Page):
         help_text="Overwrites the default title",
     )
     blog_post_description = RichTextField(features=[], blank=True, null=True)
+    description_should_appear_at_top_of_blog_post = models.BooleanField(blank=True, null=True)
     blog_post_image = models.ForeignKey(
         "wagtailimages.Image",
         blank=True,
@@ -126,16 +127,25 @@ class BlogPost(Page):
         on_delete="models.SET_NULL",
     )
     blog_post_content = RichTextField()
+    authored_by_large_text = models.CharField(
+        max_length=50, blank=True, null=True
+    )
+    authored_by_small_text = models.CharField(
+        max_length=50, blank=True, null=True
+    )
 
     content_panels = Page.content_panels + [
         FieldPanel("blog_post_title"),
         ImageChooserPanel("blog_post_image"),
         FieldPanel("blog_post_description"),
+        FieldPanel("description_should_appear_at_top_of_blog_post"),
         FieldPanel("blog_post_content"),
         MultiFieldPanel(
             [
+                FieldPanel("authored_by_large_text"),
+                FieldPanel("authored_by_small_text"),
                 InlinePanel(
-                    "blog_authors", label="Author", min_num=1, max_num=10
+                    "blog_authors", label="Author", min_num=0, max_num=10
                 )
             ],
             heading="Author(s)",

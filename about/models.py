@@ -56,10 +56,21 @@ class AboutPage(Page):
     content = StreamField(
         [("full_richtext", blocks.RichTextBlock())], null=True, blank=True
     )
-
+    team_intro_large_text = models.CharField(
+        max_length=50, blank=True, null=True
+    )
+    team_intro_small_text = models.CharField(
+        max_length=50, blank=True, null=True
+    )
     content_panels = Page.content_panels + [
         FieldPanel("banner_title"),
         ImageChooserPanel("banner_image"),
         StreamFieldPanel("content"),
-        MultiFieldPanel([InlinePanel("team")], heading="Add team members"),
+        MultiFieldPanel(
+            [
+                FieldPanel("team_intro_small_text"),
+                FieldPanel("team_intro_large_text"),
+                InlinePanel("team")
+            ],
+            heading="Add team members"),
     ]
