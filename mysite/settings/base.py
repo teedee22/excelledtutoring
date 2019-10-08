@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'modelcluster',
     'taggit',
     'widget_tweaks',
+    'captcha',
+    'wagtailcaptcha',
 
     'django.contrib.admin',
     'django.contrib.auth',

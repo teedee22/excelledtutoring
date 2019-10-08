@@ -7,9 +7,7 @@ from wagtail.admin.edit_handlers import (
     InlinePanel,
     PageChooserPanel,
 )
-
 from modelcluster.fields import ParentalKey
-
 from wagtail.contrib.forms.models import (
     AbstractEmailForm,
     AbstractFormField
@@ -17,7 +15,7 @@ from wagtail.contrib.forms.models import (
 from wagtail.core.fields import RichTextField
 from wagtail.core.models import Orderable
 from wagtail.images.edit_handlers import ImageChooserPanel
-
+from wagtailcaptcha.models import WagtailCaptchaEmailForm
 
 class FormField(AbstractFormField):
     page = ParentalKey(
@@ -79,7 +77,7 @@ class HomePageFeaturedBlogPost(Orderable):
     ]
 
 
-class HomePage(AbstractEmailForm):
+class HomePage(WagtailCaptchaEmailForm):
     """Home page model/ landing page"""
     template = "home/home_page.html"
     max_count = 1

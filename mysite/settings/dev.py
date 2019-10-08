@@ -20,7 +20,10 @@ ALLOWED_HOSTS = ['*']
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 INTERNAL_IPS = ("127.0.0.1", "172.17.0.1")
-
+# Recaptcha Settings
+RECAPTCHA_PUBLIC_KEY = '6LcBX7gUAAAAAHnHeDeX8CQ_KUNgFaFvBszhzNju'
+RECAPTCHA_PRIVATE_KEY = '6LcBX7gUAAAAALEjWCR-GW1DLDPLzOVXIA6l01Ei'
+NOCAPTCHA = True
 try:
     from .local import *
 except ImportError:
