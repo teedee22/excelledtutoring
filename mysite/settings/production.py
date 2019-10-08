@@ -3,10 +3,9 @@ from .base import *
 DEBUG = True
 SECRET_KEY = os.environ['SECRET_KEY']
 
-ALLOWED_HOSTS = ['134.209.56.29', 'localhost', '127.0.0.1']
-"""
+ALLOWED_HOSTS = ['134.209.56.29', 'localhost',]
 
-SESSION_COOKIE_SECURE = True
+#SESSION_COOKIE_SECURE = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 SECURE_CONTENT_TYPE_NOSNIFF = True
@@ -18,7 +17,7 @@ X_FRAME_OPTIONS = 'DENY'
 CSRF_COOKIE_SECURE = True
 
 # SSL settings (for when i organise certificate):
-
+"""
 SECURE_SSL_REDIRECT = True
 SECURE_HSTS_SECONDS = 120
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
@@ -48,7 +47,7 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = 'https://' + '.s3.amazonaws.com/' + 'media/'
-"""
+
 # Mail settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.environ['MG_HOST']
@@ -56,12 +55,12 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = os.environ['MG_ADDRESS']
 EMAIL_HOST_PASSWORD =os.environ['MG_PASSWORD']
 EMAIL_USE_TLS = True
-"""
+
 
 RECAPTCHA_PUBLIC_KEY = os.environ['ET_RECAPTCHA_PUBLIC_KEY']
 RECAPTCHA_PRIVATE_KEY = os.environ['ET_RECAPTCHA_PRIVATE_KEY']
 NOCAPTCHA = True
-
+#SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 
 try:
     from .local import *
