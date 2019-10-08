@@ -25,6 +25,13 @@ INTERNAL_IPS = ("127.0.0.1", "172.17.0.1")
 RECAPTCHA_PUBLIC_KEY = '6LcBX7gUAAAAAHnHeDeX8CQ_KUNgFaFvBszhzNju'
 RECAPTCHA_PRIVATE_KEY = '6LcBX7gUAAAAALEjWCR-GW1DLDPLzOVXIA6l01Ei'
 NOCAPTCHA = True
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 try:
     from .local import *
 except ImportError:
