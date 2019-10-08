@@ -11,6 +11,8 @@
         <div class="col-lg-6">
         <div class="form-container">
             <h1 style="color: white;">Contact</h1>
+            {% block thank_you_text %}
+            {% endblock %}
             <form action="{% pageurl page %}" method="POST">
                 {% csrf_token %}
                 <div class="form-group">
@@ -18,7 +20,7 @@
                     <div class="form-group">
                     {{ field.label_tag }}
                     {% render_field field class+="form-control" %}
-                    <small id="emailHelp" class="form-text text-muted">{{ field.help_text }}</small>
+                    <small class="form-text text-muted">{{ field.help_text }}</small>
                     </div>
                     {% endfor %}
                 </div>

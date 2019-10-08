@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags widget_tweaks %}
+{% block content %}
+
+{% image self.banner_image fill-1800x1300 as img %}
+
+<div class="jumbotron" style="background-image: url('{{ img.url }}'); background-size: cover; background-position: center center; color: white;">
+    <div class="row">
+        <div class="title-container">
+            <h1 class="text-light">{{ self.title }}</h1>
+        </div>
+    </div>
+</div>
+
+{% if self.intro %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-10">
+            {{ self.intro|richtext }}
+        </div>
+    </div>
+</div>
+{% endif %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-10">
+            {% block thank_you_text %} {% endblock %}
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-10">
+            <div class="form-container-contactpage">
+            <form action="{% pageurl page %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    {% for field in form.visible_fields %}
+                    <div class="form-group">
+                    {{ field.label_tag }}
+                    {% render_field field class+="form-control" %}
+                    <small class="form-text text-muted">{% if field.help_text == '1' %}If you need more space, use the <a class="text-light" href="/contact">contact page</a>{% else %}{{ field.help_text }}{% endif %}</small>
+                    </div>
+                    {% endfor %}
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-10">
+            {% for block in page.content %}
+                {% include_block block %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
