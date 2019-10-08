@@ -30,7 +30,7 @@
         {% wagtailuserbar %}
         {% load wagtailcore_tags %}
         <div class="container">
-            <h1 class="text-center display-3">{{ settings.site_settings.TitleSettings.site_title }}</h1>
+            <h1 class="text-center display-4">{{ settings.site_settings.TitleSettings.site_title }}</h1>
             <h3 class="text-center font-italic">{{ settings.site_settings.TitleSettings.site_subtitle }}</h3>
         </div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -59,7 +59,10 @@
         </div>
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/mysite.js' %}"></script>
-        
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}
         {% endblock %}
