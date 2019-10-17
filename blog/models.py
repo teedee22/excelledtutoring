@@ -124,7 +124,7 @@ class BlogPost(Page):
         blank=True,
         null=True,
         related_name="+",
-        on_delete="models.SET_NULL",
+        on_delete=models.SET_NULL,
     )
     blog_post_content = RichTextField()
     authored_by_large_text = models.CharField(
