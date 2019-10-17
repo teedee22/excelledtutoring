@@ -33,7 +33,7 @@ class ContactPage(WagtailCaptchaEmailForm):
         blank=False,
         null=True,
         related_name="+",
-        on_delete="models.SET_NULL",
+        on_delete=models.SET_NULL,
     )
 
     template = "contact/contact_page.html"

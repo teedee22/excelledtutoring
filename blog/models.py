@@ -69,7 +69,7 @@ class BlogListingPage(Page):
         null=True,
         blank=True,
         related_name="+",
-        on_delete="models.SET_NULL",
+        on_delete=models.SET_NULL,
     )
     banner_title = models.CharField(max_length=120, blank=True, null=True)
     intro_text = RichTextField(blank=True, null=True)

@@ -49,7 +49,7 @@ class AboutPage(Page):
         null=True,
         blank=True,
         related_name="+",
-        on_delete="models.SET_NULL",
+        on_delete=models.SET_NULL,
     )
     banner_title = models.CharField(max_length=120, blank=True, null=True)
 
