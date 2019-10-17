@@ -3,9 +3,8 @@ from .base import *
 DEBUG = False
 SECRET_KEY = os.environ['SECRET_KEY']
 
-ALLOWED_HOSTS = ['134.209.56.29', 'localhost',]
+ALLOWED_HOSTS = ['excelledtutoring.com', 'www.excelledtutoring.com' 'localhost', '165.227.48.180']
 
-#SESSION_COOKIE_SECURE = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 SECURE_CONTENT_TYPE_NOSNIFF = True
@@ -14,16 +13,14 @@ SECURE_BROWSER_XSS_FILTER = True
 
 X_FRAME_OPTIONS = 'DENY'
 
-#CSRF_COOKIE_SECURE = True
-
-# SSL settings (for when i organise certificate):
-"""
+# SSL settings
+CSRF_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = True
 SECURE_HSTS_SECONDS = 120
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
-"""
-#SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
 
 DATABASES = {
     'default': {
